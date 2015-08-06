@@ -26,10 +26,18 @@ func main() {
    * len is used to calculate string lenght
    * [] is used to access string index which start at 0
    * + is used to concatenate strings
+   * ``(back ticks) allow us to write string with new line
    */
   fmt.Println(len("Data type of golang"))
   fmt.Println("Data type of golang"[3])
   fmt.Println("Data type " + "of golang")
+  fmt.Println(`This
+    String
+    is produced
+    with back ticks
+    so you dont have to type
+    escape sequence while using
+    double qoutes`)
 
   /**
    * Boolens are true and false
