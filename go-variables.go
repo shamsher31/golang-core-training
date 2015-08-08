@@ -9,6 +9,11 @@ import (
  */
 var country = "India"
 
+/**
+ * The go compiler will not allow you to create
+ * varible that you never use and will through
+ * 'variable declared and not use' error
+ */
 func main() {
 
   /**
