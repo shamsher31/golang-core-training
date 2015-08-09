@@ -10,8 +10,8 @@ package main
  * fmt(format) package is used for formatting
  */
 import (
-  "fmt"
-  "time"
+	"fmt"
+	"time"
 )
 
 /**
@@ -20,7 +20,7 @@ import (
  * No semi colon at the end of line
  */
 func main() {
-  fmt.Println("My first awesome go programe")
+	fmt.Println("My first awesome go programe")
 
-  fmt.Println("Current Time : ", time.Now())
+	fmt.Println("Current Time : ", time.Now())
 }
