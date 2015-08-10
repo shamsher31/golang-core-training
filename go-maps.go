@@ -16,20 +16,32 @@ func main() {
 	 * Initilize map with key as a string
 	 * and value as a string. you can also
 	 * use map of key and val as a int
+	 * Use better way of creating maps
 	 */
-	days := make(map[string]string)
-	days["Sun"] = "Sunday"
-	days["Mon"] = "Monday"
-	days["Tue"] = "Tuesday"
-	days["Wed"] = "Wednesday"
-	days["Thu"] = "Thursday"
-	days["Fri"] = "Friday"
-	days["Sat"] = "Saturday"
+	days := map[string]string{
+		"Sun": "Sunday",
+		"Mon": "Monday",
+		"Tue": "Tuesday",
+		"Wed": "Wednesday",
+		"Thu": "Thursday",
+		"Fri": "Friday",
+		"Sat": "Saturday",
+	}
 
 	// Print all values of map
 	fmt.Println(days)
 
 	// Print single value of map
 	fmt.Println(days["Sun"])
+
+	/**
+	 * Go provides better way to access map values
+	 * 'name' is the lookup result
+	 * 'ok' returns boolen and tells whether or not
+	 * lookup was successful
+	 */
+	if name, ok := days["Fri"]; ok {
+		fmt.Println(name, ok)
+	}
 
 }
