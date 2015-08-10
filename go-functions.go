@@ -52,4 +52,19 @@ func main() {
 
 	fmt.Println(add(30, 20))
 
+	/**
+	 * 'defer' moves function execution
+	 * at the end of last function call
+	 * 'recover' stops panic and return
+	 * value passed from panic
+	 */
+	defer func() {
+		str := recover()
+		fmt.Println(str)
+
+	}()
+
+	// it genrates run-time error
+	panic("This is panic to indicate programmer error")
+
 }
