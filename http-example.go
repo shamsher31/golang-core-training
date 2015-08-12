@@ -10,7 +10,7 @@ import (
 func main() {
 
 	url := "github.com"
-	response, err := http.Get("http://isitup.org/" + url)
+	response, err := http.Get("http://isitup.org/check.php?domain=" + url)
 
 	if err != nil {
 		fmt.Println("%s", err)
