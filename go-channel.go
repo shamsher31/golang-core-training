@@ -9,19 +9,24 @@ import (
 // to send and recive msg between channel
 // c <- means send msg
 // msg := <- c means recive msg
-func pinger(c chan string) {
+func pinger(c chan<- string) {
 	for i := 0; ; i++ {
 		c <- "Ping"
 	}
 }
 
-func ponger(c chan string) {
+// we can specify channel direction
+// adding channel arrow on right
+// will make it sender
+func ponger(c chan<- string) {
 	for i := 0; ; i++ {
 		c <- "Pong"
 	}
 }
 
-func printer(c chan string) {
+// adding channel arrow on left
+// will make it receiver
+func printer(c <-chan string) {
 	for {
 		// print msg recived on channel
 		fmt.Println(<-c)
