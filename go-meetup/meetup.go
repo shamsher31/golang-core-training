@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type Groupe struct {
+type Group struct {
 	Name    string
 	URL     string
 	Member  int
@@ -15,7 +15,7 @@ type Groupe struct {
 	Country string
 }
 
-var groups = []Groupe{
+var groups = []Group{
 	{"GoSV", "http://www.meetup.com/golangsv", 194, "San Mateo", "US"},
 	{"GoSF", "http://www.meetup.com/golangsf", 1393, "San Francisco", "US"},
 }
@@ -29,8 +29,8 @@ func main() {
 func getGroups(w http.ResponseWriter, r *http.Request) {
 
 	res := struct {
-		Groupe []Groupe
-		Error  []string
+		Groups []Group
+		Errors []string
 	}{
 		groups,
 		[]string{"Something went wrong"},
