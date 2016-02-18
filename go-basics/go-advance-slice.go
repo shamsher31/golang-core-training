@@ -35,6 +35,15 @@ func main() {
 	pathName.TruncateAtFinalSlash()
 	fmt.Println("Modified path : ", string(pathName))
 
+	var iBuffer [10]int
+
+	slice4 := iBuffer[0:0]
+
+	for i := 0; i < 11; i++ {
+		slice4 = Extend(slice4, i)
+		fmt.Println(slice4)
+	}
+
 }
 
 func AddOneToEachElement(slice []byte) {
@@ -61,4 +70,11 @@ func (p *path) TruncateAtFinalSlash() {
 		*p = (*p)[0:i]
 	}
 
+}
+
+func Extend(slice []int, elem int) []int {
+	n := len(slice)
+	slice = slice[0 : n+1]
+	slice[n] = elem
+	return slice
 }
