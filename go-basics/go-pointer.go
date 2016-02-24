@@ -18,11 +18,22 @@ func add(a *int) int {
 	return *a
 }
 
+// it takes all var as *int( pointer to int)
+// it modify and returns final product
+func swapAndProduct1(x, y, product *int) {
+	if *x > *y {
+		*x, *y = *y, *x
+	}
+
+	*product = *x * *y
+}
+
 func main() {
 
 	pinCode := 411001
+	fmt.Println("Before : ", pinCode)
 	zipcode(&pinCode)
-	fmt.Println(pinCode)
+	fmt.Println("After : ", pinCode)
 
 	x := 5
 	fmt.Println("old value of x:", x)
@@ -32,5 +43,15 @@ func main() {
 	// func will change the original value
 	x1 := add(&x)
 	fmt.Println("new value of x:", x1)
+
+	p1 := 9
+	p2 := 5
+	product := 0
+
+	fmt.Println("Before: ", p1, p2, product)
+
+	swapAndProduct1(&p1, &p2, &product)
+
+	fmt.Println("After : ", p1, p2, product)
 
 }
