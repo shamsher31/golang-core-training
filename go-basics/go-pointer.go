@@ -28,6 +28,18 @@ func swapAndProduct1(x, y, product *int) {
 	*product = *x * *y
 }
 
+func inflate(num []int, factor int) {
+	for i := range num {
+		num[i] *= factor
+	}
+}
+
+// Create struct for human
+type Human struct {
+	Name      string
+	BirthYear int
+}
+
 func main() {
 
 	pinCode := 411001
@@ -49,9 +61,22 @@ func main() {
 	product := 0
 
 	fmt.Println("Before: ", p1, p2, product)
-
 	swapAndProduct1(&p1, &p2, &product)
-
 	fmt.Println("After : ", p1, p2, product)
+
+	// You can use Human struct in following diffrent ways
+	// Each refers to same meaning (only ann is different)
+	ann := Human{"Ann Bell", 1960}
+	kim := new(Human)
+	kim.Name, kim.BirthYear = "Kim pelliken", 1982
+	bell := &Human{}
+	bell.Name, bell.BirthYear = "Bell labs", 1920
+	hen := &Human{"Hen brat", 1980}
+	fmt.Println(ann, kim, bell, hen)
+
+	grades := []int{55, 65, 75, 85, 95}
+	fmt.Println("Old grades : ", grades)
+	inflate(grades, 3)
+	fmt.Println("New grades: ", grades)
 
 }
