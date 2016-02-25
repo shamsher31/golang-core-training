@@ -48,4 +48,23 @@ func main() {
 	if fields, ok := employeeType.FieldByName("Name"); ok {
 		fmt.Printf("%q %q %q \n", fields.Name, fields.Type, fields.Tag)
 	}
+
+	count := 1
+
+	// we can not change immutable type (int, float, bool)
+	// use CanSet() to check if we can alter value
+	if value := reflect.ValueOf(count); value.CanSet() {
+		value.SetInt(3)
+	}
+
+	// This will print 1 because above block is not executed
+	fmt.Println("old count value : ", count)
+
+	// get the address of count to alter its value
+	value := reflect.ValueOf(&count)
+
+	pointee := value.Elem()
+	pointee.SetInt(3)
+
+	fmt.Println("new count value", count)
 }
