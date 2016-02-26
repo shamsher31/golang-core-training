@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	file, err := os.Open(".gitignore")
+	file, err := os.Open("../.gitignore")
 
 	if err != nil {
 		log.Fatal(err)
@@ -37,7 +37,7 @@ func main() {
 	fmt.Println(string(buff))
 
 	// Easy way of reading file
-	bufstr, err := ioutil.ReadFile(".gitignore")
+	bufstr, err := ioutil.ReadFile("../.gitignore")
 
 	if err != nil {
 		log.Fatal(err)
