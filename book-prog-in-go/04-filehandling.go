@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -45,6 +47,12 @@ func main() {
 		defer outFile.Close()
 	}
 
+	fmt.Println("Reading data from ", os.Args[1], " file")
+
+	if err := writeContent(inFile, outFile); err != nil {
+		log.Fatal(err)
+	}
+
 }
 
 func getFilenamesFromTerminal() (iFileName, oFileName string, err error) {
@@ -73,4 +81,48 @@ func getFilenamesFromTerminal() (iFileName, oFileName string, err error) {
 	// in function return syntax (iFilename, oFileName string, err error)
 	// Do not use this syntax because its called poor go style
 	return
+}
+
+func writeContent(inFile io.Reader, outFile io.Writer) (err error) {
+
+	// create buffer reader and writer through which
+	// there content can be accessed as a byte(or string)
+	reader := bufio.NewReader(inFile)
+	writer := bufio.NewWriter(outFile)
+
+	// create anonymous defer function that will be called just before
+	// writeContent function will return or panic occurs to make sure
+	// that the writer buffer is flushed
+	defer func() {
+		if err == nil {
+			err = writer.Flush()
+		}
+	}()
+
+	eof := false
+
+	// create infinite loop to read the content of buffer reader
+	// set the eof to true when all the content of file is done reading (io.EOF)
+	// or err occurs to break the infinite loop
+	for !eof {
+		var line string
+
+		line, err := reader.ReadString('\n')
+
+		if err == io.EOF {
+			err = nil
+			eof = true
+		} else if err != nil {
+			return err
+		}
+
+		if _, err := writer.WriteString(line); err != nil {
+			return err
+		}
+	}
+
+	fmt.Println("File has been written into ", os.Args[2])
+
+	return nil
+
 }
