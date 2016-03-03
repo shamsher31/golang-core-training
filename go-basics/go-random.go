@@ -1,25 +1,25 @@
 package main
 
 import (
-	"fmt"
-	"math/rand"
+    "fmt"
+    "math/rand"
+    "time"
 )
 
-func main() {
-
-	fmt.Println(randomString(10))
-
+func init() {
+    rand.Seed(time.Now().UnixNano())
 }
 
-func randomString(length int) string {
+var alphabet = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
-	var str string
+func randomString(n int) string {
+    b := make([]rune, n)
+    for i := range b {
+        b[i] = alphabet[rand.Intn(len(alphabet))]
+    }
+    return string(b)
+}
 
-	alphabet := []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPKRSTUVWXYZ0123456789")
-
-	for i := 0; i < length; i++ {
-		str += string(alphabet[rand.Intn(len(alphabet))])
-	}
-
-	return str
+func main() {
+    fmt.Println(randomString(10))
 }
