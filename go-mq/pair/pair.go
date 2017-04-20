@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-
+	"os"
 	"time"
 
 	"github.com/go-mangos/mangos"
@@ -17,7 +17,12 @@ var (
 )
 
 func main() {
-	fmt.Println("Message Queue using Pair Protocol")
+	if len(os.Args) <= 2 {
+		log.Printf("Usage: %s 0|1 <url>\n", os.Args[0])
+	} else {
+		node = os.Args[1]
+		runNode(os.Args[2])
+	}
 }
 
 func newSocket() mangos.Socket {
